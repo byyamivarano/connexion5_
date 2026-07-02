@@ -258,6 +258,12 @@ footer{padding:28px 52px;background:var(--black);display:flex;justify-content:sp
 .proj-tag-m{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(240,237,228,0.45);border:0.5px solid rgba(240,237,228,0.12);padding:4px 10px;}
 
 </style>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init("Lote62blAFudSEAvUx");
+</script>
+
 </head>
 <body>
 
@@ -618,6 +624,37 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeProject();
   if (e.key === 'ArrowRight') galleryNext();
   if (e.key === 'ArrowLeft') galleryPrev();
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const btn = document.querySelector(".contact-section button");
+  if(!btn) return;
+
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const name = document.querySelector('input[placeholder="Nombre"]')?.value || "";
+    const email = document.querySelector('input[type="email"]')?.value || "";
+    const company = document.querySelector('input[placeholder="Empresa"]')?.value || "";
+    const service = document.querySelector('input[placeholder*="Servicio"]')?.value || "";
+    const message = document.querySelector('textarea')?.value || "";
+
+    emailjs.send("Servicio_9ow86nn", "template_pqcacbt", {
+      from_name: name,
+      from_email: email,
+      company: company,
+      service: service,
+      message: message
+    }).then(() => {
+      alert("Mensaje enviado ✔");
+    }, () => {
+      alert("Error al enviar");
+    });
+
+  });
 });
 </script>
 
